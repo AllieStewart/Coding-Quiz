@@ -1,21 +1,61 @@
+/* Root for main colors used throughout webpage */
 :root  {
-
+    /* Various colors */
+    --main-bkgrd-color: white;
+    --text-color: black;
+    --button-color: rgb(80, 165, 245);
 }
 
+/* Wildcard to apply attributes to all selectors */
 * {
-
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-color);
 }
 
-header {
-
-}
-
+/* Body of page */
 body {
 
 }
 
-footer {
+/* Very top of page: "View high scores" and "Time" */
+header {
 
 }
 
-/* @media (max-wdith: #) {} */
+/* "Coding Quiz Challenge" text */
+h1 {
+
+}
+
+/* "View high scores" and "Time text" */
+h2 {
+
+}
+
+h3 {
+
+}
+
+a {
+
+}
+
+/* Main content of page */
+main {
+
+}
+
+/* Insert classes/IDs + button design */
+
+/* Media queries for size adjustments */
+@media screen and (max-width: 992px) {
+    main {
+      width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+      width: 100%;
+    }
+}
