@@ -2,14 +2,14 @@
 :root  {
     /* Various colors */
     --main-bkgrd-color: white;
-    --text-color: black;
+    --main-text-color: black;
     --button-color: rgb(80, 165, 245);
 }
 
 /* Wildcard to apply attributes to all selectors */
 * {
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--text-color);
+    color: var(--main-text-color);
 }
 
 /* Body of page */
@@ -24,18 +24,20 @@ header {
 
 /* "Coding Quiz Challenge" text */
 h1 {
-
+    font-size: 200%;
 }
 
 /* "View high scores" and "Time text" */
 h2 {
-
+    font-size: 150%;
 }
 
+/* Questions, Quiz end, High Scores */
 h3 {
-
+    font-size: 120%;
 }
 
+/* View Scores */
 a {
 
 }
