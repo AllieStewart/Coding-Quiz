@@ -54,19 +54,22 @@ var questions = [
 
 // Other variables for function values (defaults)
 var timer = 0;
-var timerCount = 70;
+var timerCount;
 var isCorrect = false;
 
 // Loads high scores from previous playthrough (if any)
 function init()
 {
-    //getsHighScores();
+    //getHighScores();
 }
 
 // Starts the quiz
 function startQuiz()
 {
+    isWin = false;
+    timerCount = 70;
 
+    startTimer();
 }
 
 // Starts the timer for the quiz
@@ -99,6 +102,12 @@ function answerQuestion()
 
 }
 
+// For "Correct" or "Wrong"
+function changeState()
+{
+
+}
+
 // Ends the quiz
 function endQuiz()
 {
@@ -108,28 +117,37 @@ function endQuiz()
 // Saves high score to local storage
 function saveHighScore()
 {
-
+    // needs to save initials + score from timer
+    // initialsID + timeLeft?
 }
 
-// Clears high scores
+// Gets high scores from local storage [View High Scores]
+function getHighScores()
+{
+    // needs to retrieve list of initials + scores
+}
+
+// Clears high scores from local storage
 function clearHighScores()
 {
-
+    // needs to clear high score
 }
 
 // checkWin()?
 
-// function for replacing old questions with new ones?
+// add event.preventDefault(); under functions
 
-// add functions under this and button names (Submit, Start, Go Back, etc)
-// button.addEventListener('click', functions (event){
-//     event.preventDefault();
-// }
-
+// Click "start" to start the quiz
 startButton.addEventListener("click", startQuiz);
 
+// Click on "View high scores" to view scores
+showScores.addEventListener("click", getHighScores);
+
+// Click on "Go back" to return to previous screen
 //goBackButton.addEventListener("click", <return to page>)
 
+// Click on "Clear high scores" to clear high scores
 clearHSButton.addEventListener("click", clearHighScores);
 
+// Click on "Submit" to submit new high score with initials
 submitButton.addEventListener("click", saveHighScore);
