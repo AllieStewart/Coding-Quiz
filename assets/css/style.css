@@ -22,6 +22,11 @@ header {
 
 }
 
+/* "View high scores" specifically */
+header #view-scores {
+
+}
+
 /* "Coding Quiz Challenge" text */
 h1 {
     font-size: 200%;
@@ -47,7 +52,7 @@ main {
 
 }
 
-/* Insert classes/IDs + button design */
+
 
 /* Media queries for size adjustments */
 @media screen and (max-width: 992px) {
