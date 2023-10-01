@@ -20,25 +20,10 @@ body {
     min-height: auto;
 }
 
-/* Very top of page: "View high scores" and "Time" */
-header {
-    flex: 0 0 60px;
-    background-color: var(--main-bkgrd-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    margin-bottom: 15px;
-}
-
-/* "View high scores" specifically */
-header #view-scores {
-    color: rgb(107, 4, 175);
-}
-
 /* "Coding Quiz Challenge" text */
 h1 {
     font-size: 200%;
+    font-weight: 600;
 }
 
 /* "View high scores" and "Time text" */
@@ -55,6 +40,22 @@ h3 {
 a {
     text-decoration: none;
     color: var(--main-text-color);
+}
+
+/* Very top of page: "View high scores" and "Time" */
+header {
+    flex: 0 0 60px;
+    background-color: rgb(155, 219, 235);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+/* "View high scores" specifically */
+header #view-scores {
+    color: rgb(114, 114, 114);
 }
 
 /* Main content of page */
@@ -74,6 +75,7 @@ main p {
 
 /* To apply to all <button> in <main> */
 main button {
+    border: none;
     background-color: var(--button-color);
     color: var(--main-bkgrd-color);
     padding: 5px 10px;
@@ -86,44 +88,49 @@ main button:active {
     box-shadow: 0 0 0 2px var(--main-bkgrd-color) inset;
   }
 
+main button.inline {
+    display: inline-block;
+    margin-top: 0px;
+  }
+
 /* Hides most of page after "Coding Quiz Challenge" and <h2> values */
 .hidden {
     display: none;
   }
   
   /* Align "Coding Quiz Challenge" section */
-.coding-quiz-title {
+#coding-quiz-title {
     padding: 10px 0;
     text-align: center;
 }
 
 /* Add weight to <p> under the "Coding Quiz Challenge" header*/
-.coding-quiz-title p {
+#coding-quiz-title p {
     font-weight: 400;
 }
 
-.show-scores ol {
+#show-scores ol {
     list-style: decimal inside;
 }
 
-.show-scores li {
+#show-scores li {
     background-color: var(--main-bkgrd-color);
     padding: 10px;
 }
 
-.show-scores li:nth-of-type(even) {
+#show-scores li:nth-of-type(even) {
     background-color: var(--main-bkgrd-color);
 }
 
 /* Adding line border under questions page(s) */
-.answers-correct-wrong {
+#answers-correct-wrong {
     margin-top: 5px;
     border-top: 1px solid rgb(95, 95, 95);
     padding: 5px 0;
 }
 
 /* Adding color of "Correct!"/"Wrong!" and making them italic */
-.answers-correct-wrong h3 {
+#answers-correct-wrong h3 {
     color: rgb(177, 177, 177);
     font-style: italic;
 }

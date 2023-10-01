@@ -6,8 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Coding Quiz Challenge</title>
-        <link rel="stylesheet" href="/assets/css/reset.css"/>
-        <link rel="stylesheet" href="/assets/css/style.css"/>
+        <link rel="stylesheet" href="assets/css/reset.css"/>
+        <link rel="stylesheet" href="assets/css/style.css"/>
     </head>
 
     <!-- Top of page -->
@@ -21,17 +21,16 @@
     <!-- Main content of code -->
     <main>
         <!-- Coding Quiz Challenge start page -->
-        <article class = "coding-quiz-title">
+        <article id="coding-quiz-title">
             <h1>Coding Quiz Challenge</h1>
-            <p>Try to answer the following coding-related questions within the time limit. 
-                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
-            </p>
+            <p>Try to answer the following coding-related questions within the time limit.</p> 
+            <p>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
         </article>
         <!-- button 'Start' -->
-        <button class="start-button">Start Quiz</button>
+        <button class = "inline" id="start-button">Start Quiz</button>
 
         <!-- Questions page -->
-        <article class="game-questions hidden">
+        <article id="game-questions" class="hidden">
             <h3>Question goes here</h3>
             <ol>
                 <!-- Buttons for each of these Answers -->
@@ -43,34 +42,34 @@
         </article>
 
         <!-- End of quiz page -->
-        <article class="game-over hidden">
+        <article id="game-over" class="hidden">
             <h3>All done!</h3>
             <p>Your final score is<span id="final-score">21</span>.</p> 
             <!-- Form id, label for, input, and button 'Submit' -->
             <form id="game-over-form">
                 <label for="intials">Enter initials: </label>
                 <input type="text" id="initials" maxlength="2"/>
-                <button>Submit</button>
+                <button class = "inline">Submit</button>
             </form>
         </article>
 
         <!-- High scores page -->
-        <article class="show-scores hidden">
+        <article id="show-scores" class="hidden">
             <h3>High scores:</h3>
             <ol></ol>
             <!-- Buttons 'Go back' and 'Clear high scores' -->
-            <button class="go-back-button">Go back</button>
-            <button class="clear-hs-button">Clear high scores</button>
+            <button class = "inline" id="go-back-button">Go back</button>
+            <button class = "inline" id="clear-hs-button">Clear high scores</button>
         </article>
         
         <!-- Correct!/Wrong! underneath Questions -->
-        <article class="answers-correct-wrong hidden">
+        <article id="answers-correct-wrong" class="hidden">
             <h3 id="answer-state">Wrong!</h3>
         </article>
 
     </main>
         <!-- The .js file needed -->
-        <script src="/assets/js/script.js"></script>
+        <script src="assets/js/script.js"></script>
 
     </body>
 
