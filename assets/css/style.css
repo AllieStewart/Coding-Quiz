@@ -9,22 +9,31 @@
 /* Wildcard to apply attributes to all selectors */
 * {
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--main-text-color);
 }
 
 /* Body of page */
 body {
-
+    font-size: 18px;
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
 }
 
 /* Very top of page: "View high scores" and "Time" */
 header {
-
+    flex: 0 0 60px;
+    background-color: var(--main-bkgrd-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 15px;
 }
 
 /* "View high scores" specifically */
 header #view-scores {
-
+    color: rgb(107, 4, 175);
 }
 
 /* "Coding Quiz Challenge" text */
@@ -44,15 +53,80 @@ h3 {
 
 /* View Scores */
 a {
-
+    text-decoration: none;
+    color: var(--main-text-color);
 }
 
 /* Main content of page */
 main {
-
+    flex: 0 0 100%;
+    width: 50%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 
+/* To apply to all <p> in <main> */
+main p {
+    line-height: 1.5;
+}
 
+/* To apply to all <button> in <main> */
+main button {
+    background-color: var(--button-color);
+    color: var(--main-bkgrd-color);
+    padding: 5px 10px;
+    margin: 5px 0;
+    display: block;
+}
+
+/* Add box shadow to button when clicked */
+main button:active {
+    box-shadow: 0 0 0 2px var(--main-bkgrd-color) inset;
+  }
+
+/* Hides most of page after "Coding Quiz Challenge" and <h2> values */
+.hidden {
+    display: none;
+  }
+  
+  /* Align "Coding Quiz Challenge" section */
+.coding-quiz-title {
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Add weight to <p> under the "Coding Quiz Challenge" header*/
+.coding-quiz-title p {
+    font-weight: 400;
+}
+
+.show-scores ol {
+    list-style: decimal inside;
+}
+
+.show-scores li {
+    background-color: var(--main-bkgrd-color);
+    padding: 10px;
+}
+
+.show-scores li:nth-of-type(even) {
+    background-color: var(--main-bkgrd-color);
+}
+
+/* Adding line border under questions page(s) */
+.answers-correct-wrong {
+    margin-top: 5px;
+    border-top: 1px solid rgb(95, 95, 95);
+    padding: 5px 0;
+}
+
+/* Adding color of "Correct!"/"Wrong!" and making them italic */
+.answers-correct-wrong h3 {
+    color: rgb(177, 177, 177);
+    font-style: italic;
+}
 
 /* Media queries for size adjustments */
 @media screen and (max-width: 992px) {

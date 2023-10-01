@@ -23,13 +23,15 @@
         <!-- Coding Quiz Challenge start page -->
         <article class = "coding-quiz-title">
             <h1>Coding Quiz Challenge</h1>
-            <p>Try to answer the following coding-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <p>Try to answer the following coding-related questions within the time limit. 
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+            </p>
         </article>
         <!-- button 'Start' -->
         <button class="start-button">Start Quiz</button>
 
         <!-- Questions page -->
-        <article class="game-questions">
+        <article class="game-questions hidden">
             <h3>Question goes here</h3>
             <ol>
                 <!-- Buttons for each of these Answers -->
@@ -41,7 +43,7 @@
         </article>
 
         <!-- End of quiz page -->
-        <article class="game-over">
+        <article class="game-over hidden">
             <h3>All done!</h3>
             <p>Your final score is<span id="final-score">21</span>.</p> 
             <!-- Form id, label for, input, and button 'Submit' -->
@@ -53,7 +55,7 @@
         </article>
 
         <!-- High scores page -->
-        <article class ="show-scores">
+        <article class="show-scores hidden">
             <h3>High scores:</h3>
             <ol></ol>
             <!-- Buttons 'Go back' and 'Clear high scores' -->
@@ -62,7 +64,7 @@
         </article>
         
         <!-- Correct!/Wrong! underneath Questions -->
-        <article class="answers-correct-wrong">
+        <article class="answers-correct-wrong hidden">
             <h3 id="answer-state">Wrong!</h3>
         </article>
 
