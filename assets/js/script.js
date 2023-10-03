@@ -84,7 +84,7 @@ function startQuiz()
     startTimer();
     toggleDisplay(codingQuizMain);
     toggleDisplay(gameQuestions);
-    answerQuestion();
+    showQuestion(0);
 }
 
 // Starts the timer for startQuiz
@@ -111,16 +111,40 @@ function startTimer()
       }, 1000);
 }
 
+// For displaying questions
+function showQuestion(index)
+{
+     this.thing = index;
+     var thing = questions[index];
+
+     gameQuestions.querySelector("h3").innerText = thing.question;
+    
+     answersList.innerHTML = "";
+
+     for (let i in thing.answers)
+     {
+         var ans = thing.answers[i];
+         var li = document.createElement("li");
+         var button = document.createElement("button");
+         button.innerText = ans;
+         button.addEventListener("click", () => {
+           this.answerQuestion(i);
+         });
+         li.appendChild(button);
+         answersList.appendChild(li);
+     }
+}
+
 // For answering questions
 function answerQuestion()
 {
 
 }
 
-// For "Correct" or "Wrong" in answerQuestion
+// For "Correct" or "Wrong" in showQuestion
 function changeState()
 {
-
+    //answerState
 }
 
 // Ends the quiz
@@ -160,16 +184,7 @@ function clearHighScores()
 function toggleDisplay(x)
 {
     x.classList.toggle("hidden");
-//     if (hiddenPage.style.display === "none") {
-//        hiddenPage.style.display = "block";
-//     } else {
-//        hiddenPage.style.display = "none";
-//     }
-
-//     if (visiblePage.style.display === "")
 }
-
-// checkWin()?
 
 // add event.preventDefault(); under functions
 
