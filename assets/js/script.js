@@ -85,6 +85,7 @@ function startQuiz()
     toggleDisplay(codingQuizMain);
     toggleDisplay(gameQuestions);
     showQuestion(0);
+    updateScore();
 }
 
 // Starts the timer for startQuiz
@@ -127,7 +128,7 @@ function showQuestion(index)
          var li = document.createElement("li");
          var button = document.createElement("button");
          button.innerText = ans;
-         button.addEventListener("click", () => {
+         button.addEventListener("click", function() {
            this.answerQuestion(i);
          });
          li.appendChild(button);
@@ -142,9 +143,38 @@ function answerQuestion()
 }
 
 // For "Correct" or "Wrong" in showQuestion
-function changeState()
+function changeState(state)
 {
-    //answerState
+    if(state == "correct")
+    {
+        answerState.innerText="Correct!";
+    }
+
+    else
+    {
+        answerState.innerText="Wrong!";
+    }
+
+}
+
+// Updates the score while playing
+function updateScore()
+{
+    var answerButton = document.getElementById("button");
+    answerButton.addEventListener("click", function()
+    {
+        if(answersList.child() === questions.answers)
+        {
+            changeState(correct);
+        }
+
+        else
+        {
+            changeState(wrong);
+            timerCount.textContent = timerCount - 10;
+        }
+
+    })
 }
 
 // Ends the quiz
