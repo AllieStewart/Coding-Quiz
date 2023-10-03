@@ -7,6 +7,7 @@ var startButton = document.querySelector("#start-button");
 
 // Questions page variables
 var gameQuestions = document.getElementById("game-questions");
+var questionsList = gameQuestions.querySelector("h3");
 var answersList = gameQuestions.querySelector("ol");
 
 // End of quiz page variables
@@ -35,34 +36,37 @@ var questions = [
     {
         question: "In what order is the JavaScipt file loaded?",
         answers: ["After <head>", "Before </main>", "Before </body>", "After </html>"],
-        correct: 2,
+        correct: "Before </body>"
     },
     {
         question: "What operator do you use to compare the same value AND datatype?",
         answers: ["===", "==", "=", ">"],
-        correct: 0,
+        correct: "==="
     },
     {
         question: "Which method puts a window on the screen with only one button?",
         answers: ["prompt()", "alert()", "confirm()", "console.log()"],
-        correct: 1,
+        correct: "alert()"
     },
     {
         question: "In a Document Object Model (DOM), what element is after the Document?",
         answers: ["Root Element", "Body Element", "Head Element", "Title Element"],
-        correct: 0,
+        correct: "Root Element"
     },
     {
         question: "Which method can remove an element from an array?",
         answers: ["pop()", "shift()", "splice()", "All of the above."],
-        correct: 3,
+        correct: "All of the above."
     }
 ];
 
 // Other variables for function values (defaults)
 var timer;
 var timerCount;
-var isCorrect = false;
+var isCorr = false;
+var currQuestion = 0;
+var selectedAnswer = 0;
+var stateTime = 0;
 
 var userScore = {
     initials: initialsID.value,
@@ -72,20 +76,19 @@ var userScore = {
 // Loads high scores from previous playthrough (if any)
 function init()
 {
-    //getHighScores();
+    getHighScores();
 }
 
 // Starts the quiz
 function startQuiz()
 {
-    isCorrect = false;
     timerCount = 70;
 
     startTimer();
     toggleDisplay(codingQuizMain);
     toggleDisplay(gameQuestions);
     showQuestion(0);
-    updateScore();
+    toggleDisplay(answersCorrectWrong);
 }
 
 // Starts the timer for startQuiz
@@ -97,7 +100,7 @@ function startTimer()
         timeLeft.textContent = timerCount;
         if (timerCount >= 0) {
           // Tests if win condition is met
-          if (isCorrect && timerCount > 0) {
+          if (isCorr && timerCount > 0) {
             // Clears interval and stops timer
             clearInterval(timer);
             endQuiz();
@@ -113,12 +116,12 @@ function startTimer()
 }
 
 // For displaying questions
-function showQuestion(index)
+function showQuestion(currQuestion)
 {
-     this.thing = index;
-     var thing = questions[index];
+     this.thing = currQuestion;
+     var thing = questions[currQuestion];
 
-     gameQuestions.querySelector("h3").innerText = thing.question;
+     questionsList.innerText = thing.question;
     
      answersList.innerHTML = "";
 
@@ -129,53 +132,62 @@ function showQuestion(index)
          var button = document.createElement("button");
          button.innerText = ans;
          button.addEventListener("click", function() {
-           this.answerQuestion(i);
+           changeState(i);
          });
          li.appendChild(button);
          answersList.appendChild(li);
      }
 }
 
-// For answering questions
-function answerQuestion()
+// For changing questions
+function nextQuestion()
 {
-
-}
-
-// For "Correct" or "Wrong" in showQuestion
-function changeState(state)
-{
-    if(state == "correct")
+    if (currQuestion < questions.length - 1)
     {
-        answerState.innerText="Correct!";
+        currQuestion++;
+        showQuestion(currQuestion);
     }
 
     else
     {
-        answerState.innerText="Wrong!";
+        questionsList.empty();
+        answersList.empty();
+        endQuiz();
+    }
+}
+
+// For "Correct" or "Wrong" in showQuestion and answering
+function changeState(selectedAnswer)
+{
+    var correct = questions[this.question].correct == selectedAnswer;
+    answerState.innerText = correct ? "Correct!" : "Wrong!";
+    if (!correct)
+    {
+        this.timerCount -= 10;
+
+        if(this.timerCount <=0)
+        {
+            this.timerCount += 10;
+            endQuiz();
+        }
     }
 
 }
+//     var answerButton = document.getElementById("button");
+//     answerButton.addEventListener("click", function(){
+//     if(questions[currQuestion].answers[selectedAnswer].correct)
+//     {
+//         answerState.innerText="Correct!";
+//         nextQuestion();
+//     }
 
-// Updates the score while playing
-function updateScore()
-{
-    var answerButton = document.getElementById("button");
-    answerButton.addEventListener("click", function()
-    {
-        if(answersList.child() === questions.answers)
-        {
-            changeState(correct);
-        }
-
-        else
-        {
-            changeState(wrong);
-            timerCount.textContent = timerCount - 10;
-        }
-
-    })
-}
+//     else
+//     {
+//         nextQuestion();
+//         timerCount.textContent = timerCount - 10;
+//         answerState.innerText="Wrong!";
+//     }
+// });
 
 // Ends the quiz
 function endQuiz()
@@ -225,7 +237,7 @@ startButton.addEventListener("click", startQuiz);
 showScores.addEventListener("click", getHighScores);
 
 // Click on "Go back" to return to previous screen
-//goBackButton.addEventListener("click", <return to page>)
+//goBackButton.addEventListener("click", );
 
 // Click on "Clear high scores" to clear high scores
 clearHSButton.addEventListener("click", clearHighScores);
