@@ -124,7 +124,7 @@ function nextQuestion()
 // For "Correct" or "Wrong", change to next question
 function changeState(selectedAnswer)
 {
-    if(questions[currQuestion].answers === questions[currQuestion].answers[selectedAnswer])
+    if(questions[currQuestion].correct === questions[currQuestion].answers[selectedAnswer])
     {
         answerState.textContent="Correct!";
     }
@@ -172,6 +172,7 @@ function chooseFourth()
 function endQuiz()
 {
     toggleDisplay(gameOver);
+    clearInterval(timer);
     finalScore.textContent = timeLeft;
 }
 
