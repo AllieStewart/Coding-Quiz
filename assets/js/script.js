@@ -4,7 +4,7 @@ var codingQuizMain = document.getElementById("coding-quiz-title");
 //View Scores on top left, Time left on top right, start button after Coding Quiz Challenge
 var viewScores = document.getElementById("view-scores");
 var timeLeft = document.getElementById("time-left");
-var startButton = document.querySelector("#start-button");
+var startButton = document.getElementById("start-button");
 
 // Questions page variables
 var gameQuestions = document.getElementById("game-questions");
@@ -21,12 +21,12 @@ var gameOver = document.getElementById("game-over");
 var finalScore = document.getElementById("final-score");
 var gameOverForm = document.getElementById("game-over-form");
 var initialsID = document.getElementById("initials");
-var submitButton = document.querySelector("#submit-button");
+var submitButton = document.getElementById("submit-button");
 
 // View high scores page variables
 var showScores = document.getElementById("show-scores");
-var goBackButton = document.querySelector("#go-back-button");
-var clearHSButton = document.querySelector("#clear-hs-button");
+var goBackButton = document.getElementById("go-back-button");
+var clearHSButton = document.getElementById("clear-hs-button");
 
 // Underneath questions page, Correct!/Wrong! variables
 var answersCorrectWrong = document.getElementById("answers-correct-wrong");
@@ -72,28 +72,15 @@ var timerCount;
 var currQuestion = 0;
 var selectedAnswer = 0;
 
-var userScore = {
-    initials: initialsID.value,
-    score: timeLeft.value
-};
-
-// Loads high scores from previous playthrough (if any)
-function init()
-{
-    getHighScores();
-}
-
 // Starts the quiz
 function startQuiz()
 {
     timerCount = 70;
-    currQuestion = 0;
 
     startTimer();
     toggleDisplay(codingQuizMain);
     toggleDisplay(gameQuestions);
     showQuestion();
-    toggleDisplay(answersCorrectWrong);
 }
 
 // Starts the timer for startQuiz
@@ -119,6 +106,7 @@ function startTimer()
 function showQuestion()
 {
     nextQuestion();
+    toggleDisplay(answersCorrectWrong);
 }
 
 // For changing questions
@@ -149,7 +137,7 @@ function changeState(selectedAnswer)
     }
 
     currQuestion++;
-    if (currQuestion < questions.length - 1)
+    if (currQuestion < questions.length)
     {
         nextQuestion();
     }
@@ -184,13 +172,11 @@ function chooseFourth()
 function endQuiz()
 {
     toggleDisplay(gameOver);
-    toggleDisplay(gameQuestions);
     finalScore.textContent = timeLeft;
-    saveHighScore();
 }
 
 // Saves high score to local storage
-function saveHighScore()
+function saveHighScore(event)
 {
     event.preventDefault();
     if (initialsID.value === "") {
@@ -198,34 +184,56 @@ function saveHighScore()
         return;
     }
 
-    finalScore.textContent = timerCount;
-    timerCount = timeLeft.value;
-    localStorage.setItem('userScore', JSON.stringify(userScore));
+    var userScore = {
+        initials: initialsID.value,
+        score: timeLeft.value
+    };
+
+    var saveScores = localStorage.getItem("high scores");
+    var scoreArr;
+
+    if(saveScores === null)
+    {
+        scoreArr = [];
+    }
+
+    else
+    {
+        scoreArr = JSON.parse(saveScores);
+    }
+
+    scoreArr.push(userScore);
+    localStorage.setItem("high scores", JSON.stringify(scoreArr));
+
+    getHighScores();
 }
 
 // Gets high scores from local storage [View High Scores]
 function getHighScores()
 {
+    toggleDisplay(showScores);
     // needs to retrieve list of initials + scores
-    var getHS = JSON.parse(localStorage.getItem(userScore));
+    var getHS = JSON.parse(localStorage.getItem("high scores"));
 
     if(getHS !== null)
     {
         initialsID.innerHTML = getHS.initials;
         timeLeft.innerHTML = getHS.score;
+
+        for (var i = 0; i < getHS.length; i++)
+        {
+            var newScore = document.createElement("ol");
+            newScore.innerHTML = getHS[i].initialsID + ": " + getHS[i].score;
+            showScores.appendChild(newScore);
+        }
     }
 
-}
-
-// Clears high scores from local storage
-function clearHighScores()
-{
-    localStorage.clear();
 }
 
 // Toggles blocks of code display or hide
 function toggleDisplay(x)
 {
+    event.preventDefault();
     x.classList.toggle("hidden");
 
 }
@@ -252,7 +260,13 @@ goBackButton.addEventListener("click", function(event)
 });
 
 // Click on "Clear high scores" to clear high scores
-clearHSButton.addEventListener("click", clearHighScores);
+clearHSButton.addEventListener("click", function()
+{
+    localStorage.removeItem("high scores");
+});
 
 // Click on "Submit" to submit new high score with initials
-submitButton.addEventListener("click", saveHighScore);
+submitButton.addEventListener("click", function(event)
+{
+    saveHighScore(event);
+});
