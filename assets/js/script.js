@@ -68,9 +68,14 @@ var questions = [
 
 // Other variables for function values (defaults)
 var timer;
-var timerCount;
+var timerCount = 0;
 var currQuestion = 0;
 var selectedAnswer = 0;
+
+var userScore = {
+    initials: initialsID.value = "",
+    score: timerCount.value = 0
+};
 
 // Starts the quiz
 function startQuiz()
@@ -137,6 +142,7 @@ function changeState(selectedAnswer)
     }
 
     currQuestion++;
+    
     if (currQuestion < questions.length)
     {
         nextQuestion();
@@ -172,8 +178,9 @@ function chooseFourth()
 function endQuiz()
 {
     toggleDisplay(gameOver);
+    toggleDisplay(gameQuestions);
     clearInterval(timer);
-    finalScore.textContent = timeLeft;
+    finalScore.innerText = timerCount.toString();
 }
 
 // Saves high score to local storage
@@ -184,11 +191,6 @@ function saveHighScore(event)
         alert("Enter your initials.");
         return;
     }
-
-    var userScore = {
-        initials: initialsID.value,
-        score: timeLeft.value
-    };
 
     var saveScores = localStorage.getItem("high scores");
     var scoreArr;
@@ -210,7 +212,7 @@ function saveHighScore(event)
 }
 
 // Gets high scores from local storage [View High Scores]
-function getHighScores()
+function getHighScores(event)
 {
     toggleDisplay(showScores);
     // needs to retrieve list of initials + scores
@@ -234,7 +236,6 @@ function getHighScores()
 // Toggles blocks of code display or hide
 function toggleDisplay(x)
 {
-    event.preventDefault();
     x.classList.toggle("hidden");
 
 }
