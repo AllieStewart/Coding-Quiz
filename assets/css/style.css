@@ -71,6 +71,7 @@ main {
 /* To apply to all <p> in <main> */
 main p {
     line-height: 1.5;
+    margin: 5px;
 }
 
 /* To apply to all <button> in <main> */
@@ -109,17 +110,9 @@ main button.inline {
     font-weight: 400;
 }
 
+/* Sets ordered list to have decimal values */
 #show-scores ol {
-    list-style: decimal inside;
-}
-
-#show-scores li {
-    background-color: var(--main-bkgrd-color);
-    padding: 10px;
-}
-
-#show-scores li:nth-of-type(even) {
-    background-color: var(--main-bkgrd-color);
+    list-style: decimal;
 }
 
 /* Adding line border under questions page(s) */

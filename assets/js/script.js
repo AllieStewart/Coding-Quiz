@@ -181,6 +181,7 @@ function endQuiz()
     toggleDisplay(gameQuestions);
     clearInterval(timer);
     finalScore.innerText = timerCount.toString();
+    userScore.score = timerCount.toString();
 }
 
 // Saves high score to local storage
@@ -191,7 +192,8 @@ function saveHighScore(event)
         alert("Enter your initials.");
         return;
     }
-
+    userScore.initials = initialsID.value;
+    
     var saveScores = localStorage.getItem("high scores");
     var scoreArr;
 
@@ -221,7 +223,7 @@ function getHighScores(event)
     if(getHS !== null)
     {
         initialsID.innerHTML = getHS.initials;
-        timeLeft.innerHTML = getHS.score;
+        finalScore.innerHTML = getHS.score;
 
         for (var i = 0; i < getHS.length; i++)
         {
