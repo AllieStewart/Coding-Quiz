@@ -20,7 +20,7 @@ var fourthChoice = document.getElementById("button4");
 var gameOver = document.getElementById("game-over");
 var finalScore = document.getElementById("final-score");
 //var gameOverForm = document.getElementById("game-over-form"); // Never used the form
-var initialsID = document.getElementById("initials").value;
+var initialsID = document.getElementById("initials");
 var submitButton = document.getElementById("submit-button");
 
 // View high scores page variables, with 'Go back' and 'Clear high scores' buttons
@@ -209,7 +209,7 @@ function saveHighScore(event)
         return;
     }
     // can't seem to get 'initials' to store...
-    userScore.initials =  initialsID.toString();
+    userScore.initials =  initialsID.value;
     
     var saveScores = localStorage.getItem("high scores");
     var scoreArr;
@@ -275,7 +275,7 @@ showScores.addEventListener("click", function(event)
 {
     getHighScores(event);
 });
-// ^Could not get it figured out :/
+//^ Could not get to work :/
 
 // Click on "Go back" to return to previous screen
 goBackButton.addEventListener("click", function()
