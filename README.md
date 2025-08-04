@@ -29,7 +29,7 @@ when the quiz finished.
 ![Alt text](assets/screens/Screen7.png)
 
 ## Usage
-Simply click on the link and watch the magic happen. Link to the website: https://alliestewart.github.io/challenge-4/
+Simply click on the link and watch the magic happen. Link to the website: https://alliestewart.github.io/Coding-Quiz/
 
 ## What I Have Learned
 I've learned a lot about JavaScript functionality, and how useful
